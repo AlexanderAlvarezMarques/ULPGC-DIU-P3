@@ -224,6 +224,9 @@ public class Principal extends javax.swing.JFrame {
     private void inputFieldMinKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputFieldMinKeyTyped
         if (evt.getKeyChar() == '\n') {
             min = checkInputType(inputFieldMin.getText());
+            
+            changeMaxMinOrder();
+            
             initMatrix();
             setSliderConfiguration();
         }
@@ -232,6 +235,9 @@ public class Principal extends javax.swing.JFrame {
     private void inputFieldMaxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputFieldMaxKeyTyped
         if (evt.getKeyChar() == '\n') {
             max = checkInputType(inputFieldMax.getText());
+            
+            changeMaxMinOrder();
+            
             initMatrix();
             setSliderConfiguration();
         }
@@ -350,6 +356,16 @@ public class Principal extends javax.swing.JFrame {
 
     private void updateLabelValueSelected() {
         inputSelectedValue.setText("" + inputSlider.getValue());
+    }
+    
+    private void changeMaxMinOrder() {
+        if (max < min) {
+            int aux = max;
+            max = min;
+            min = aux;
+            inputFieldMin.setText("" + min);
+            inputFieldMax.setText("" + max);
+        }
     }
 
     private int checkInputType(String txt) {
